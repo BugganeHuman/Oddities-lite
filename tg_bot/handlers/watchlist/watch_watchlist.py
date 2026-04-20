@@ -67,7 +67,7 @@ async def get_item(event : Union[types.Message, types.CallbackQuery], item_id):
     if item['runtime']:
         text += f"Runtime - {item['runtime']}\n"
     if item['seasons']:
-        text += f"Seasons - {item['director']}\n"
+        text += f"Seasons - {item['seasons']}\n"
     if item['episodes']:
         text += f"Episodes - {item['episodes']}\n\n"
     if item['note']:
