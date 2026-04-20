@@ -61,6 +61,7 @@ async def to_back(callback : types.CallbackQuery, state : FSMContext):
                 reply_markup=get_category_panel('title'))
     elif last_panel == "START_MENU":
         await to_start_menu(callback)
+        await state.clear()
     elif last_panel == "TITLE_STATUS_PANEL":
         await callback.message.edit_text("status panel", reply_markup=get_title_status_panel())
     elif last_panel == "TITLE_STATE_WAITING_FOR_START_WATCH":

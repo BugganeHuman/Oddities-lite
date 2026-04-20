@@ -173,7 +173,7 @@ async def get_updated_item(state: FSMContext):
     if runtime:
         text += f"Runtime - {runtime}\n"
     if seasons:
-        text += f"Seasons - {director}\n"
+        text += f"Seasons - {seasons}\n"
     if episodes:
         text += f"Episodes - {episodes}\n\n"
     if note:
