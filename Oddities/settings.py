@@ -12,7 +12,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'web',
-                "https://unconsecutively-polyprotic-fay.ngrok-free.dev"]
+                "https://unconsecutively-polyprotic-fay.ngrok-free.dev",
+                 '.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
