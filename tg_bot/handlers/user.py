@@ -28,7 +28,7 @@ async def show_user_info(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     await push_to_history(state, 'SHOW_ACCOUNT_ACTIONS')
 
-    url = "http://127.0.0.1:8000/api/users/me/"
+    url = "https://oddities.onrender.com/api/users/me/"
 
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),
@@ -67,7 +67,7 @@ async def show_password(callback : types.CallbackQuery, state : FSMContext):
 async def show_toggle_visibility(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     await push_to_history(state, 'SHOW_ACCOUNT_ACTIONS')
-    url = 'http://127.0.0.1:8000/api/users/get_user_visibility/'
+    url = 'https://oddities.onrender.com/api/users/get_user_visibility/'
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id" : str(callback.from_user.id),
@@ -98,7 +98,7 @@ async def toggle_visibility(callback : types.CallbackQuery, state : FSMContext):
 @router.callback_query(F.data == "save_updated_visibility")
 async def save_toggle_visibility(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
-    url = 'http://127.0.0.1:8000/api/users/toggle_visibility/'
+    url = 'https://oddities.onrender.com/api/users/toggle_visibility/'
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id" : str(callback.from_user.id),
@@ -134,7 +134,7 @@ async def show_confirm_delete_account(callback : types.CallbackQuery, state : FS
 @router.callback_query(F.data == 'delete_user')
 async def delete_account(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
-    url = 'http://127.0.0.1:8000/api/users/hard_delete_user/'
+    url = 'https://oddities.onrender.com/api/users/hard_delete_user/'
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id" : str(callback.from_user.id),

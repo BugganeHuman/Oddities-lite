@@ -20,7 +20,7 @@ from tg_bot.handlers.watchlist.add_watchlist import WatchlistState
 router = Router()
 
 async def get_all_items(callback : types.CallbackQuery):
-    url = "http://127.0.0.1:8000/api/watchlist/item/"
+    url = "https://oddities.onrender.com/api/watchlist/item/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(callback.from_user.id),
@@ -41,7 +41,7 @@ async def get_all_items(callback : types.CallbackQuery):
     return dict(reversed(list(items.items())))
 
 async def get_item(event : Union[types.Message, types.CallbackQuery], item_id):
-    url = f"http://127.0.0.1:8000/api/watchlist/item/{item_id}/"
+    url = f"https://oddities.onrender.com/api/watchlist/item/{item_id}/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(event.from_user.id),
@@ -135,7 +135,7 @@ async def confirm_delete_item(callback : types.CallbackQuery, state : FSMContext
 async def delete_item(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     item_id = int(callback.data.split('_')[2])
-    url= f"http://127.0.0.1:8000/api/watchlist/item/{item_id}/"
+    url= f"https://oddities.onrender.com/api/watchlist/item/{item_id}/"
     data = await state.get_data()
     # это что бы удалить последний элемент из history и можно было делать back
     pages = [key for key in data['history'] if key.startswith('WATCHLIST_WATCH_MENU_PAGE_')]
@@ -214,7 +214,7 @@ async def save_updated_item(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     data = await state.get_data()
     item_id = data.get('item_id')
-    url = f"http://127.0.0.1:8000/api/watchlist/item/{item_id}/"
+    url = f"https://oddities.onrender.com/api/watchlist/item/{item_id}/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(callback.from_user.id),

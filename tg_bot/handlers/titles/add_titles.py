@@ -362,7 +362,7 @@ async def save_title(callback : types.CallbackQuery, state : FSMContext):
         year_end = int(state_data['title_year_end'])
         post_data['year_end'] = year_end
 
-    url = "http://127.0.0.1:8000/api/titles/title/"
+    url = "https://oddities.onrender.com/api/titles/title/"
 
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),

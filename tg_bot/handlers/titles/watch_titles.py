@@ -22,7 +22,7 @@ router = Router()
 all_titles = {}
 
 async def get_all_titles(callback : types.CallbackQuery):
-    url = "http://127.0.0.1:8000/api/titles/title/"
+    url = "https://oddities.onrender.com/api/titles/title/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(callback.from_user.id),
@@ -43,7 +43,7 @@ async def get_all_titles(callback : types.CallbackQuery):
     return dict(reversed(list(titles.items())))
 
 async def get_title(event : Union[types.Message, types.CallbackQuery], title_id):
-    url= f"http://127.0.0.1:8000/api/titles/title/{title_id}/"
+    url= f"https://oddities.onrender.com/api/titles/title/{title_id}/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(event.from_user.id),
@@ -135,7 +135,7 @@ async def run_confirm_delete(callback : types.CallbackQuery, state : FSMContext)
 async def delete_title(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     title_id = int(callback.data.split('_')[2])
-    url= f"http://127.0.0.1:8000/api/titles/title/{title_id}/"
+    url= f"https://oddities.onrender.com/api/titles/title/{title_id}/"
     data = await state.get_data()
     # это что бы удалить последний элемент из history и можно было делать back
     pages = [key for key in data['history'] if key.startswith('TITLES_WATCH_MENU_PAGE_')]
@@ -199,7 +199,7 @@ async def save_updated_title (callback : types.CallbackQuery, state : FSMContext
     await callback.answer()
     data = await state.get_data()
     title_id = data.get('title_id')
-    url = f"http://127.0.0.1:8000/api/titles/title/{title_id}/"
+    url = f"https://oddities.onrender.com/api/titles/title/{title_id}/"
     headers = {
         "X-Bot-Key": str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id": str(callback.from_user.id),

@@ -362,7 +362,7 @@ async def save_item(callback : types.CallbackQuery, state : FSMContext):
         director = state_data.get('item_director')
         post_data['director'] = director
 
-    url = "http://127.0.0.1:8000/api/watchlist/item/"
+    url = "https://oddities.onrender.com/api/watchlist/item/"
 
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),

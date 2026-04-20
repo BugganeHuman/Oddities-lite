@@ -44,7 +44,7 @@ async def get_start_menu(event):
 
 @router.message(Command("start"))
 async def start(message: types.Message):
-    url = "http://127.0.0.1:8000/api/users/register/"
+    url = "https://oddities.onrender.com/api/users/register/"
 
     user_password = secrets.token_hex(16)
     user_id = message.from_user.id
@@ -71,7 +71,7 @@ async def start(message: types.Message):
 
 @router.message(Command('backup'))
 async def backup(message : types.Message):
-    url = 'http://web:8000/api/backup/'
+    url = 'https://oddities.onrender.com/api/backup/'
     headers = {
         "X-Bot-Key" : str(os.getenv("BOT_MASTER_KEY")),
         "X-Telegram-Id" : str(message.from_user.id),
