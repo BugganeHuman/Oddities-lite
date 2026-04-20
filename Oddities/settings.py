@@ -38,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Oddities.urls'
@@ -137,7 +138,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'criticism/static/')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 BOT_MASTER_KEY = os.getenv("BOT_MASTER_KEY")
 
 
