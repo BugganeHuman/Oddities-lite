@@ -20,7 +20,7 @@ async def main():
     dp.include_router(user.router)
     dp.include_router(watch_titles.router)
 
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, handle_signals=False)
 
 def start_bot_thread():
     try:
