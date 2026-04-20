@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criticism</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div id = "menu_buttons">
+    <form action="http://localhost:8000/criticism/" method="GET" class="form_memu">
+        <button type="submit" class="menu_button">home</button>
+    </form>
+
+    <form action="http://localhost:8000/criticism/sort_up/" method="GET" class="form_memu">
+        <button type="submit" class="menu_button">sort up</button>
+    </form>
+
+    <form action="http://localhost:8000/criticism/sort_down/" method="GET" class="form_memu">
+        <button type="submit" class="menu_button">sort down</button>
+    </form>
+
+    <form action="http://localhost:8000/admin/" class="form_memu">
+        <button type="submit" class="menu_button">admin</button>
+    </form>
+</div>
+
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

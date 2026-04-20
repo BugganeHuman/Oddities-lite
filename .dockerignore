@@ -1,0 +1,5 @@
+.venv
+__pycache__
+oddities_db.sqlite3
+.git
+secret.env

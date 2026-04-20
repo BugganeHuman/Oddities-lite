@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% for title in titles %}
+        <div id = "created_at">{{title.end_watch}}</div>
+        <img src="{{title.cover}}" style="max-width: 350px;
+            max-height: 350px; width: auto; height: auto;
+                object-fit: contain">
+        <div id = "created_name">{{title.name}}</div>
+        <div id = "rating" >{{title.rating}}</div>
+        <div id = "review">{{title.review|linebreaks}}</div>
+        <div id = "space"></div>
+
+    {% endfor %}
+{% endblock %}

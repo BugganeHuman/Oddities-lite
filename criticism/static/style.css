@@ -1,0 +1,29 @@
+body{
+    background-color: black;
+    color: antiquewhite;
+    font-size: 30px;
+    font-family: Verdana, sans-serif;
+}
+
+#review{
+    max-width: 60%;
+}
+
+#space{
+    height: 100px;
+}
+
+#menu_buttons{
+    margin-left: 1500px
+
+}
+.form_memu {
+    display: inline-block;
+}
+
+.menu_button{
+    font-size: 20px;
+    background-color: black;
+    color: green;
+    border-color: green;
+}
