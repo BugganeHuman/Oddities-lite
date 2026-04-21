@@ -16,16 +16,18 @@ from tg_bot.keyboards import (get_base_add_panel, get_category_panel,
                        get_watch_titles_panel, get_open_title_panel,
                        get_watchlist_confirm_panel,get_watch_watchlist_panel,
                        get_open_item_panel, get_account_actions_panel)
-from tg_bot.utils import push_to_history, get_updated_title, get_updated_item
+from tg_bot.utils import (push_to_history, get_updated_title, get_updated_item,
+                          send_smart_message)
 from tg_bot.handlers.watchlist.add_watchlist import WatchlistState
 from tg_bot.handlers.watchlist.watch_watchlist import get_all_items
 
 router = Router()
 
 @router.callback_query(F.data == "to_start_menu")
-async def to_start_menu(callback : types.CallbackQuery):
+async def to_start_menu(callback : types.CallbackQuery, state : FSMContext):
     await callback.answer()
     await get_start_menu(callback)
+    await state.clear()
 
 @router.callback_query(F.data == "to_back")
 async def to_back(callback : types.CallbackQuery, state : FSMContext):
@@ -35,7 +37,7 @@ async def to_back(callback : types.CallbackQuery, state : FSMContext):
     history = data.get('history')
 
     if not history:
-        await to_start_menu(callback)
+        await to_start_menu(callback, state)
         return
 
     last_panel = history.pop()
@@ -60,7 +62,7 @@ async def to_back(callback : types.CallbackQuery, state : FSMContext):
         await callback.message.edit_text("Chose the title category",
                 reply_markup=get_category_panel('title'))
     elif last_panel == "START_MENU":
-        await to_start_menu(callback)
+        await to_start_menu(callback, state)
         await state.clear()
     elif last_panel == "TITLE_STATUS_PANEL":
         await callback.message.edit_text("status panel", reply_markup=get_title_status_panel())
@@ -93,12 +95,12 @@ async def to_back(callback : types.CallbackQuery, state : FSMContext):
         title_id = int(last_panel.split('_')[2])
         data = await state.get_data()
         title = await get_updated_title(state)
-        await callback.message.edit_text(title['text'], reply_markup=get_open_title_panel(title_id))
+        await send_smart_message(callback.message, title['text'],
+                        get_open_title_panel(title_id))
     elif last_panel.startswith("TITLE_UPDATE_PANEL_"):
         title_id = int(last_panel.split('_')[3])
         title = await get_updated_title(state)
-        await callback.message.edit_text(title['text'],
-                reply_markup=get_title_update_panel())
+        await send_smart_message(callback.message, title['text'], get_title_update_panel())
     elif last_panel == "WATCHLIST_PANEL_ADD_CATEGORY":
         await callback.message.edit_text("Chose the item's category",
                 reply_markup=get_category_panel('watchlist'))

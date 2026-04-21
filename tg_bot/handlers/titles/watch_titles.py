@@ -10,7 +10,8 @@ from tg_bot.keyboards import (get_base_add_panel, get_category_panel,
                        get_confirm_delete_panel)
 from aiogram.fsm.state import StatesGroup, State
 from decimal import Decimal
-from tg_bot.utils import push_to_history, delete_last, get_updated_title
+from tg_bot.utils import (push_to_history, delete_last, get_updated_title,
+                          send_smart_message)
 from datetime import datetime
 from tg_bot.handlers.start import get_start_menu
 from tg_bot.handlers.titles.add_titles import add_title_review
@@ -121,7 +122,7 @@ async def watch_title(callback : types.CallbackQuery, state : FSMContext):
     title = await get_title(callback, title_id)
     data = await state.get_data()
     await state.update_data(title_data=title)
-    await callback.message.edit_text(title['title_text'], reply_markup=get_open_title_panel(title_id))
+    await send_smart_message(callback.message, title['title_text'], get_open_title_panel(title_id))
 
 @router.callback_query(F.data.contains('confirm_delete_title_'))
 async def run_confirm_delete(callback : types.CallbackQuery, state : FSMContext):
@@ -173,7 +174,7 @@ async def run_update(callback : types.CallbackQuery, state : FSMContext):
     title_id = int(callback.data.split('_')[3])
     await push_to_history(state, F"OPEN_TITLE_{title_id}")
     title_data = await get_updated_title(state)
-    await callback.message.edit_text(title_data['text'], reply_markup=get_title_update_panel())
+    await send_smart_message(callback.message, title_data['text'], get_title_update_panel())
 
 @router.callback_query(F.data.contains("update_title_"))
 async def update_title(callback : types.CallbackQuery, state : FSMContext):
@@ -216,7 +217,7 @@ async def save_updated_title (callback : types.CallbackQuery, state : FSMContext
                         await asyncio.sleep(0.5)
                         await delete_last(state)
                         title = await get_updated_title(state)
-                        await callback.message.answer(title['text'], reply_markup=get_open_title_panel(title_id))
+                        await send_smart_message(callback.message, title['text'], get_open_title_panel(title_id))
                     else:
                         await callback.message.answer(f"error {response.status}" )
                         #await callback.message.answer(f"{await response.json()}")

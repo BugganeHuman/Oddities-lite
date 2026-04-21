@@ -257,3 +257,12 @@ async def delete_rated_item(callback : types.CallbackQuery, state : FSMContext):
         except Exception as e:
             print(e)
 
+async def send_smart_message(message, text, reply_markup=None):
+    if len(text) <= 4090:
+        return await message.answer(text, reply_markup=reply_markup)
+
+    chunks = [text[i:i + 4090] for i in range(0, len(text), 4090)]
+    for chunk in chunks[:-1]:
+        await message.answer(chunk)
+
+    return await message.answer(chunks[-1], reply_markup=reply_markup)
