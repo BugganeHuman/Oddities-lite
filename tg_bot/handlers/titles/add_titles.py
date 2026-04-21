@@ -359,11 +359,11 @@ async def save_title(callback : types.CallbackQuery, state : FSMContext):
     if 'title_start_watch' in state_data:
         date = datetime.strptime(str(state_data['title_start_watch']), '%d.%m.%Y').date()
         start_watch = date.strftime('%Y-%m-%d')
-        post_data['start_watch'] = start_watch
+        post_data['start_watch'] = date
     if 'title_end_watch' in state_data:
         date = datetime.strptime(str(state_data['title_end_watch']), '%d.%m.%Y').date()
         end_watch = date.strftime('%Y-%m-%d')
-        post_data['end_watch'] = end_watch
+        post_data['end_watch'] = date
     if 'title_director' in state_data:
         director = state_data['title_director']
         post_data['director'] = director
