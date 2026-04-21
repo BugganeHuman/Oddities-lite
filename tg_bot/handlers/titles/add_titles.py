@@ -210,8 +210,7 @@ async def add_title_start_watch(message : types.Message, state : FSMContext):
     is_update = data.get('is_update', False)
     try:
         correct_date = datetime.strptime(start_watch_date, "%d.%m.%Y").date()
-        iso_date = correct_date.strftime("%Y-%m-%d")
-        await state.update_data(title_start_watch=iso_date)
+        await state.update_data(title_start_watch=correct_date)
         if is_update:
             await message.answer("Save")
             await asyncio.sleep(0.5)
@@ -243,8 +242,7 @@ async def add_title_end_watch(message : types.Message, state : FSMContext):
     is_update = data.get('is_update', False)
     try:
         correct_date = datetime.strptime(end_watch_date, "%d.%m.%Y").date()
-        iso_date = correct_date.strftime("%Y-%m-%d")
-        await state.update_data(title_end_watch=iso_date)
+        await state.update_data(title_end_watch=correct_date)
         if is_update:
             await message.answer("Save")
             await asyncio.sleep(0.5)
@@ -359,11 +357,11 @@ async def save_title(callback : types.CallbackQuery, state : FSMContext):
     if 'title_start_watch' in state_data:
         date = datetime.strptime(str(state_data['title_start_watch']), '%d.%m.%Y').date()
         start_watch = date.strftime('%Y-%m-%d')
-        post_data['start_watch'] = date
+        post_data['start_watch'] = start_watch
     if 'title_end_watch' in state_data:
         date = datetime.strptime(str(state_data['title_end_watch']), '%d.%m.%Y').date()
         end_watch = date.strftime('%Y-%m-%d')
-        post_data['end_watch'] = date
+        post_data['end_watch'] = end_watch
     if 'title_director' in state_data:
         director = state_data['title_director']
         post_data['director'] = director
