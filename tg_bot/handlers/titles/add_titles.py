@@ -112,9 +112,15 @@ async def add_title_year_start(message : types.Message, state : FSMContext):
 @router.message(TitleState.waiting_for_review)
 async def add_title_review(message : types.Message, state : FSMContext):
     data = await state.get_data()
-    is_update = data.get('is_update', False)
-    title_review = message.text
-    await state.update_data(title_review=title_review)
+    old_review = data.get('title_review', '')
+    full_review = old_review + message.text
+    await state.update_data(title_review=full_review)
+    await asyncio.sleep(2)
+    new_data = await state.get_data()
+    if new_data.get('title_review') != full_review:
+        return
+
+    is_update = new_data.get('is_update', False)
     if is_update:
         await message.answer("Save")
         await asyncio.sleep(0.5)
