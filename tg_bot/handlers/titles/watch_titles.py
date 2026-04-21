@@ -220,6 +220,6 @@ async def save_updated_title (callback : types.CallbackQuery, state : FSMContext
                         await send_smart_message(callback.message, title['text'], get_open_title_panel(title_id))
                     else:
                         await callback.message.answer(f"error {response.status}" )
-                        #await callback.message.answer(f"{await response.json()}")
+                        await callback.message.answer(f"{await response.json()}")
         except Exception as e:
             print(e)
