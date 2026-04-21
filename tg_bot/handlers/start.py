@@ -42,8 +42,8 @@ async def get_start_menu(event):
         #parse_mode="Markdown")
 
 
-@router.message(Command("start"))
-async def start(message: types.Message):
+@router.message(Command("start"), )
+async def start(message: types.Message, state :  FSMContext):
     url = "https://oddities.onrender.com/api/users/register/"
 
     user_password = secrets.token_hex(16)
@@ -63,6 +63,7 @@ async def start(message: types.Message):
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=data) as response:
             if response.status in [200, 201]:
+                await state.clear()
                 await get_start_menu(message)
             elif response.status in [400, 409]:
                 await get_start_menu(message)

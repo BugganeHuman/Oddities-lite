@@ -9,7 +9,7 @@ load_dotenv(BASE_DIR/"secret.env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'web',
                 "https://unconsecutively-polyprotic-fay.ngrok-free.dev",
