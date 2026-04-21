@@ -257,7 +257,8 @@ async def add_title_end_watch(message : types.Message, state : FSMContext):
 
             await message.answer('check', reply_markup=get_confirm_title_panel())
 
-    except Exception:
+    except Exception as e:
+        print(e)
         await message.answer("write correct date dd.mm.yyyy for example 11.04.2026",
                     reply_markup=get_base_add_panel())
         await state.set_state(TitleState.waiting_for_end_watch)
