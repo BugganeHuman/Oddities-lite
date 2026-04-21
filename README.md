@@ -3,7 +3,7 @@
 
 ### Telegram bot - @Oddities_Diary_Bot
 
-### Main project with full readme - https://oddities.onrender.com/api/docs/
+### Main project with full readme - https://github.com/BugganeHuman/Oddities
 
 ## *Idea*
 ### *A lightweight version of the Oddities project, designed to run on resource-constrained platforms (Render Free Tier, budget VPS) without the use of Docker.*
