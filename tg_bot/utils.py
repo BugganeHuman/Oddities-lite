@@ -1,5 +1,3 @@
-from idlelib.macosx import isXQuartz
-
 from aiogram.fsm.context import FSMContext
 from aiogram import Router, F, types
 from typing import Union
