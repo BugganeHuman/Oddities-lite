@@ -24,11 +24,12 @@
 1. ```git clone https://github.com/BugganeHuman/Oddities-lite```
 2. ```cd Oddities-lite```
 3. for linux ```source venv/bin/activate```, for windows ```venv\Scripts\activate```
-4. pip install -r requirements.txt
+4. ```pip install -r requirements.txt```
 5. create secret.env, in example - example.env
 6. ```python manage.py migrate```
 7. ```python manage.py collectstatic --noinput```
 8. ```python manage.py runserver 0.0.0.0:8000```
+9. If you need to, put your URLs where mine are.
 
 ### Render Deploy
 
