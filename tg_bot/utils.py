@@ -4,7 +4,7 @@ from typing import Union
 import re
 import os
 import aiohttp
-import datetime
+from datetime import datetime
 
 async def delete_last(state : FSMContext):
     data = await state.get_data()
