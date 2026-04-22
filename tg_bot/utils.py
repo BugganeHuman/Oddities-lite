@@ -44,9 +44,9 @@ async def get_title_text(state):
 
     text = (f"{name}  {year_start} | {category}\n"
             f"rating - {rating}\n\n"
-            f"_____________________________________________________\n"
+            f"___________________________\n"
             f"{review}\n"
-            f"_____________________________________________________\n\n"
+            f"___________________________\n\n"
             )
 
     if "title_director" in state_data:
@@ -104,9 +104,9 @@ async def get_updated_title(state: FSMContext):
 
     text = (f"{name}  {year_start} | {category}\n"
             f"rating - {rating}\n\n"
-            f"_____________________________________________________\n"
+            f"___________________________\n"
             f"{review}\n"
-            f"_____________________________________________________\n\n"
+            f"___________________________\n\n"
             )
 
     if "title_director" in state_data or title['director']:

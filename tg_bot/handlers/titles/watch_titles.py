@@ -60,9 +60,9 @@ async def get_title(event : Union[types.Message, types.CallbackQuery], title_id)
 
     text = (f"{title['name']}  {title['year_start']} | {title['category']}\n"
             f"rating - {title['rating']}\n\n"
-            f"_____________________________________________________\n"
+            f"___________________________\n"
             f"{title['review']}\n"
-            f"_____________________________________________________\n\n"
+            f"___________________________\n\n"
             )
     if title['director']:
         text += f"Director - {title['director']}\n"
@@ -85,18 +85,13 @@ async def get_title(event : Union[types.Message, types.CallbackQuery], title_id)
 async def watch_titles(callback : types.CallbackQuery, state : FSMContext ):
     await callback.answer()
     await push_to_history(state, 'TITLES_WATCH_MENU_PAGE_0')
-
-    # https://unconsecutively-polyprotic-fay.ngrok-free.dev
-
     titles = await get_all_titles(callback)
     await state.update_data(titles_data=titles)
-    #all_titles = titles
     await callback.message.edit_text("Watch Your Titles",
                                         reply_markup=get_watch_titles_panel(titles),
                                         parse_mode="HTML",
                                         disable_web_page_preview=True
                                         )
-
 
 @router.callback_query(F.data.contains("open_titles_page_"))
 async def response_next_titles_page(callback : types.CallbackQuery, state : FSMContext):
