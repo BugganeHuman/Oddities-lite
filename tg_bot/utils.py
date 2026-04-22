@@ -113,12 +113,19 @@ async def get_updated_title(state: FSMContext):
         updated['director'] = director
         text += f"Director - {director}\n"
     if "title_start_watch" in state_data or title['start_watch']:
-        date = datetime.strptime(str(start_watch), '%d.%m.%Y').date()
-        updated['start_watch'] = date.strftime('%Y-%m-%d')
+        if '-' in start_watch:
+            updated['start_watch'] = start_watch
+        else:
+            date_obj = datetime.strptime(start_watch, '%d.%m.%Y').date()
+            updated['start_watch'] = date_obj.strftime('%Y-%m-%d')
         text += f"Start watch - {start_watch}\n"
+
     if "title_end_watch" in state_data or title['end_watch']:
-        date = datetime.strptime(str(end_watch), '%d.%m.%Y').date()
-        updated['end_watch'] = date.strftime('%Y-%m-%d')
+        if '-' in end_watch:
+            updated['end_watch'] = end_watch
+        else:
+            date_obj = datetime.strptime(end_watch, '%d.%m.%Y').date()
+            updated['end_watch'] = date_obj.strftime('%Y-%m-%d')
         text += f"End watch - {end_watch}\n"
     if "title_year_end" in state_data or title['year_end']:
         updated['year_end'] = year_end
